@@ -2,26 +2,22 @@ import React from 'react';
 
 const CalculatorResult = ({ total }) => {
   if (total !== null) {
-    if (isNaN(total)) {
-      return (
-        <>
-          <p>Not enough information to calculate</p>
-        </>
-      );
-    }
     if (total > 0) {
       return (
         <>
-          <p>Ian owes Lindsey:</p>
-          <div>${total}</div>
+          <div className="resultContainer">
+            <p className="resultDescription">Ian owes Lindsey:</p>
+            <h2 className="resultTotal">${total}</h2>
+          </div>
         </>
       );
     } else {
       const positiveTotal = Math.abs(total);
       return (
         <>
-          <p>Lindsey owes Ian:</p>
-          <div>${positiveTotal}</div>
+          <div className="resultDivider"></div>
+          <p className="resultDescription">Lindsey owes Ian:</p>
+          <h2 className="resultTotal">${positiveTotal}</h2>
         </>
       );
     }

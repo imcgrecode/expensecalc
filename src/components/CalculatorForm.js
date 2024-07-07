@@ -1,4 +1,8 @@
 import React from 'react';
+import useFocus from '../hooks/useFocus';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import Button from '@mui/material/Button';
 
 const CalculatorForm = ({
   handleSubmit,
@@ -10,45 +14,90 @@ const CalculatorForm = ({
   nfmStatement,
   setNfmStatement,
 }) => {
+  const rentInput = useFocus();
+  const amexStatementInput = useFocus();
+  const nfmStatementInput = useFocus();
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="formContainer" onSubmit={handleSubmit}>
       <div className="formControl">
-        <label htmlFor="Rent">Rent:</label>
-        <input
-          required
-          type="text"
+        <TextField
           id="rent"
           name="rent"
-          placeholder="Enter placeholder..."
+          type="text"
+          label="Rent"
+          placeholder="Rent"
           value={rent}
           onChange={(e) => setRent(formatNumber(e.target.value))}
+          InputProps={{
+            startAdornment: rentInput.isFocused && (
+              <InputAdornment position="start">$</InputAdornment>
+            ),
+          }}
+          InputLabelProps={{
+            required: rentInput.isFocused ? true : false,
+          }}
+          onFocus={rentInput.handleFocus}
+          onBlur={() => rentInput.handleBlur(rent)}
+          required
+          className="textField"
         />
       </div>
       <div className="formControl">
-        <label htmlFor="amexStatement">AMEX Statement:</label>
-        <input
-          required
-          type="text"
+        <TextField
           id="amexStatement"
           name="amexStatement"
-          placeholder="Enter placeholder..."
+          type="text"
+          label="AMEX Statement"
+          placeholder="AMEX Statement"
           value={amexStatement}
           onChange={(e) => setAmexStatement(formatNumber(e.target.value))}
+          InputProps={{
+            startAdornment: amexStatementInput.isFocused && (
+              <InputAdornment position="start">$</InputAdornment>
+            ),
+          }}
+          InputLabelProps={{
+            required: amexStatementInput.isFocused ? true : false,
+          }}
+          onFocus={amexStatementInput.handleFocus}
+          onBlur={() => amexStatementInput.handleBlur(amexStatement)}
+          required
+          className="textField"
         />
       </div>
       <div className="formControl">
-        <label htmlFor="nfmStatement">NFM Statement:</label>
-        <input
-          required
-          type="text"
+        <TextField
           id="nfmStatement"
           name="nfmStatement"
-          placeholder="Enter placeholder..."
+          type="text"
+          label="NFM Statement"
+          placeholder="NFM Statement"
           value={nfmStatement}
           onChange={(e) => setNfmStatement(formatNumber(e.target.value))}
+          InputProps={{
+            startAdornment: nfmStatementInput.isFocused && (
+              <InputAdornment position="start">$</InputAdornment>
+            ),
+          }}
+          InputLabelProps={{
+            required: nfmStatementInput.isFocused ? true : false,
+          }}
+          onFocus={nfmStatementInput.handleFocus}
+          onBlur={() => nfmStatementInput.handleBlur(nfmStatement)}
+          required
+          className="textField"
         />
       </div>
-      <button className="btn">Calculate</button>
+      <Button
+        type="submit"
+        variant="contained"
+        sx={{ width: '40%' }}
+        size="large"
+        className="button"
+      >
+        Calculate
+      </Button>
     </form>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Header from './components/Header';
 import CalculatorForm from './components/CalculatorForm';
@@ -18,14 +18,18 @@ function App() {
     const amexStatementAmount = parseFloat(amexStatement.replace(/,/g, '')) / 2;
     const nfmStatementAmount = parseFloat(nfmStatement.replace(/,/g, '')) / 2;
     const totalAmount = rentAmount - amexStatementAmount + nfmStatementAmount;
-    const roundedTotalAmount = Math.round(totalAmount * 100) / 100;
+    const roundedTotalAmount = (Math.round(totalAmount * 100) / 100).toFixed(2);
     setTotal(roundedTotalAmount);
     setExpanded(true);
   }
 
+  useEffect(() => {
+    console.log('Ian');
+  }, []);
+
   return (
-    <div className={`box ${expanded ? 'expanded' : ''}`}>
-      <Header heading="Expense Tracker" />
+    <div className={`box ${expanded ? 'expandedBox' : ''}`}>
+      <Header heading="Expense Calculator" />
       <CalculatorForm
         handleSubmit={handleSubmit}
         formatNumber={formatNumber}
@@ -36,7 +40,16 @@ function App() {
         nfmStatement={nfmStatement}
         setNfmStatement={setNfmStatement}
       />
-      <CalculatorResult total={total} />
+      <div
+        className={`resultDivider ${expanded ? 'expandedResultDivider' : ''}`}
+      ></div>
+      <div
+        className={`calculatorResult ${
+          expanded ? 'expandedCalculatorResult' : ''
+        }`}
+      >
+        <CalculatorResult total={total} />
+      </div>
     </div>
   );
 }
