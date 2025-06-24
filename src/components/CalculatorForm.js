@@ -25,7 +25,7 @@ const CalculatorForm = ({
           id="rent"
           name="rent"
           type="text"
-          label="Rent"
+          label="Rent (Lindsey)"
           placeholder="Rent"
           value={rent}
           onChange={(e) => setRent(formatNumber(e.target.value))}
@@ -48,7 +48,7 @@ const CalculatorForm = ({
           id="amexStatement"
           name="amexStatement"
           type="text"
-          label="AMEX Statement"
+          label="AMEX Statement (Ian)"
           placeholder="AMEX Statement"
           value={amexStatement}
           onChange={(e) => setAmexStatement(formatNumber(e.target.value))}
@@ -71,7 +71,7 @@ const CalculatorForm = ({
           id="nfmStatement"
           name="nfmStatement"
           type="text"
-          label="NFM Statement"
+          label="NFM Statement (Lindsey)"
           placeholder="NFM Statement"
           value={nfmStatement}
           onChange={(e) => setNfmStatement(formatNumber(e.target.value))}

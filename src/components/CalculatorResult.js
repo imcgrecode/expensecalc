@@ -15,9 +15,10 @@ const CalculatorResult = ({ total }) => {
       const positiveTotal = Math.abs(total);
       return (
         <>
-          <div className="resultDivider"></div>
-          <p className="resultDescription">Lindsey owes Ian:</p>
-          <h2 className="resultTotal">${positiveTotal}</h2>
+          <div className="resultContainer">
+            <p className="resultDescription">Lindsey owes Ian:</p>
+            <h2 className="resultTotal">${positiveTotal}</h2>
+          </div>
         </>
       );
     }

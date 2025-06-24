@@ -14,18 +14,21 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    const rentAmount = parseFloat(rent.replace(/,/g, '')) / 2 + 75;
-    const amexStatementAmount = parseFloat(amexStatement.replace(/,/g, '')) / 2;
-    const nfmStatementAmount = parseFloat(nfmStatement.replace(/,/g, '')) / 2;
-    const totalAmount = rentAmount - amexStatementAmount + nfmStatementAmount;
-    const roundedTotalAmount = (Math.round(totalAmount * 100) / 100).toFixed(2);
+    const rentAmount = parseFloat(rent.replace(/,/g, ''));
+    const nfmStatementAmount = parseFloat(nfmStatement.replace(/,/g, ''));
+    const amexStatementAmount = parseFloat(amexStatement.replace(/,/g, ''));
+    const totalExpenses = rentAmount + nfmStatementAmount + amexStatementAmount;
+    const fairShare = totalExpenses / 2;
+    const youPaid = amexStatementAmount;
+    const amountYouOweHer = fairShare - youPaid;
+    const roundedTotalAmount = (
+      Math.round(amountYouOweHer * 100) / 100
+    ).toFixed(2);
     setTotal(roundedTotalAmount);
     setExpanded(true);
   }
 
-  useEffect(() => {
-    console.log('Ian');
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className={`box ${expanded ? 'expandedBox' : ''}`}>
